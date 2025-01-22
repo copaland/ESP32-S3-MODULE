@@ -9,3 +9,15 @@ ESP32 S3 16M Flash, AI IoT 개발용 보드
 | i2r-05 | name |
 |--------|-------|
 | 47 | LED1 D13 파랑 |
+| 38 | LED2 D12 빨간 |
+| 15 | RGB LED red |
+| 16 | RGB LED green |
+| 21 | RGB LED blue |
+| 11 | Buzzer D5 |
+| 10 | DHT11 D4 |
+| 1 | Rotation A0 |
+| 8 | SW1 D2 |
+| 9 | SW2 D3 |
+| 2 | Light A1 |
+| 12 | IR Receiver D6 |
+|    | LM35 A2 |
