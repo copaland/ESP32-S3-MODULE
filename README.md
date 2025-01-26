@@ -23,6 +23,9 @@ ESP32 S3 16M Flash, AI IoT 개발용 보드
 |    | LM35 A2 |
 
 # i2r-05 AI 보드 Arduino IDE 프로그램
-# RGB Led 제어 (48범핀)
-48번 RGB Led가 연결되어 있어서 색상을 제어하는 프로그램 입니다.
+# RGB Led 제어 (48번핀)
+48번 RGB Led가 연결되어 있어서 색상을 제어하는 프로그램 입니다.    
 <img src="https://github.com/user-attachments/assets/8d3ef6cc-9df4-47de-a5eb-6bd3402c9eb4" alt="RGB Led" width="100">  48번 RGB Led 제어    
+'''
+esp32 s3 를 사용하고 48번핀에 RGB Led  가 연결되 있습니다. 이 한선으로 칼라를 제어 합니다. 빨강 파랑 녹색 불들어오게 프로그램 해줘
+'''
