@@ -21,3 +21,6 @@ ESP32 S3 16M Flash, AI IoT 개발용 보드
 | 2 | Light A1 |
 | 12 | IR Receiver D6 |
 |    | LM35 A2 |
+
+# RGB Led 제어 (48범핀)
+48번 RGB Led가 연결되어 있어서 색상을 제어하는 프로그램 입니다.
