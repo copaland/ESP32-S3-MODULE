@@ -62,4 +62,28 @@ void setColor(uint8_t red, uint8_t green, uint8_t blue) {
 
 <img src="https://github.com/user-attachments/assets/8d3ef6cc-9df4-47de-a5eb-6bd3402c9eb4" alt="Led Control" width="100">  47, 38번 Led 제어    
 ```
+esp32 s3 보드 47, 38번 핀에 led가 연결되어 있습니다. 1초 간격으로 교차로 점등하게 프록램 해줘요
+```
+아두이노 프로그램
+```
+#define LED1_PIN 47 // 첫 번째 LED 핀 번호
+#define LED2_PIN 38 // 두 번째 LED 핀 번호
+
+void setup() {
+  pinMode(LED1_PIN, OUTPUT); // LED1 핀을 출력 모드로 설정
+  pinMode(LED2_PIN, OUTPUT); // LED2 핀을 출력 모드로 설정
+
+  digitalWrite(LED1_PIN, LOW); // LED1 초기 상태 꺼짐
+  digitalWrite(LED2_PIN, LOW); // LED2 초기 상태 꺼짐
+}
+
+void loop() {
+  digitalWrite(LED1_PIN, HIGH); // LED1 켜기
+  digitalWrite(LED2_PIN, LOW);  // LED2 끄기
+  delay(1000);                 // 1초 대기
+
+  digitalWrite(LED1_PIN, LOW); // LED1 끄기
+  digitalWrite(LED2_PIN, HIGH); // LED2 켜기
+  delay(1000);                 // 1초 대기
+}
 ```
