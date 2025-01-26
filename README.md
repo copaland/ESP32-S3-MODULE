@@ -257,9 +257,53 @@ void loop() {
 
 ## 1.7 DHT11 온습도 센서 (10 번핀)
 
-ESP32-S3 보드의 11번 핀에 연결된 부저를 제어하기 위해 Arduino 코드를 작성했습니다. 부저는 PWM 신호를 통해 제어되며, 이를 통해 다양한 음을 생성할 수 있습니다.    
+이 프로그램은 DHT 라이브러리를 사용하여 온도와 습도를 읽고 시리얼 모니터에 출력합니다.   
 
 <img src="https://github.com/user-attachments/assets/8d3ef6cc-9df4-47de-a5eb-6bd3402c9eb4" alt="DHT11 온습도 센서" width="100">  DHT11 온습도 센서
 ```
 sp32 s3 보드 10 번핀에  DHT11 온습도 센서가 연결되어 있습니다. 온습도를 출력하는 프로그램해
+```
+- 라이브러리 설치 : DHT sensor library by Adafruit 
+- #define DHTTYPE DHT11: DHT 센서의 타입을 지정합니다.
+- 데이터 읽기:
+readHumidity(): 습도를 읽습니다.
+readTemperature(): 온도를 읽습니다
+- 출력 형식: 온도는 °C, 습도는 % 단위로 출력됩니다.
+- 지연 시간: 센서의 데이터 갱신 주기(최대 2초)에 맞춰 delay(2000)을 사용하여 2초마다 값을 읽습니다.
+
+아두이노 프로그램
+```
+#include "DHT.h"  //DHT sensor library by Adafruit
+
+#define DHTPIN 10       // DHT 센서가 연결된 핀 번호
+#define DHTTYPE DHT11   // 사용하는 센서의 유형 (DHT11)
+
+// DHT 센서 객체 생성
+DHT dht(DHTPIN, DHTTYPE);
+
+void setup() {
+  Serial.begin(115200);  // 시리얼 통신 초기화
+  dht.begin();           // DHT 센서 초기화
+  Serial.println("DHT11 센서를 이용한 온습도 측정 시작");
+}
+
+void loop() {
+  float humidity = dht.readHumidity();     // 습도 값 읽기
+  float temperature = dht.readTemperature(); // 온도 값 읽기
+
+  // DHT 센서 데이터 유효성 확인
+  if (isnan(humidity) || isnan(temperature)) {
+    Serial.println("센서로부터 데이터를 읽을 수 없습니다!");
+  } else {
+    Serial.print("온도: ");
+    Serial.print(temperature);
+    Serial.println(" °C");
+
+    Serial.print("습도: ");
+    Serial.print(humidity);
+    Serial.println(" %");
+  }
+
+  delay(2000); // 2초마다 측정
+}
 ```
