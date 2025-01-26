@@ -16,11 +16,12 @@ ESP32 S3 16M Flash, AI IoT 개발용 보드
 | 11 | Buzzer D5 |
 | 2 | Light A1 |
 | 10 | DHT11 D4 |
+| 4  | LM35 A2 |
 | 15 | RGB LED red |
 | 16 | RGB LED green |
 | 21 | RGB LED blue |
 | 12 | IR Receiver D6 |
-|    | LM35 A2 |
+
 
 # 1. i2r-05 AI 보드 Arduino IDE 프로그램
 ## 1.1 RGB Led 제어 (48번핀)
