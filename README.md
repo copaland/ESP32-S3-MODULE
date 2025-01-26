@@ -13,10 +13,10 @@ ESP32 S3 16M Flash, AI IoT 개발용 보드
 | 8 | SW1 D2 |
 | 9 | SW2 D3 |
 | 1 | Rotation A0 |
+| 11 | Buzzer D5 |
 | 15 | RGB LED red |
 | 16 | RGB LED green |
 | 21 | RGB LED blue |
-| 11 | Buzzer D5 |
 | 10 | DHT11 D4 |
 | 2 | Light A1 |
 | 12 | IR Receiver D6 |
@@ -139,3 +139,29 @@ void loop() {
   delay(500);                               // 500ms 대기
 }
 ```
+
+## 1.5 Buzzer 출력 (11 번핀)
+
+ESP32-S3 보드의 11번 핀에 연결된 부저를 제어하기 위해 Arduino 코드를 작성했습니다. 부저는 PWM 신호를 통해 제어되며, 이를 통해 다양한 음을 생성할 수 있습니다.    
+
+<img src="https://github.com/user-attachments/assets/8d3ef6cc-9df4-47de-a5eb-6bd3402c9eb4" alt="Buzzer 출력" width="100">  11번 Buzzer 출력    
+```
+esp32 s3 보드 11 번핀에 Buzzer가 연결되어 있습니다. 출력이 나오게 프로그램해줘
+```
+아두이노 프로그램
+```
+#define ANALOG_PIN 1  // 아날로그 입력 핀 번호
+
+void setup() {
+  Serial.begin(115200);       // 시리얼 통신 초기화
+  analogReadResolution(12);   // 12비트 해상도 설정 (0 ~ 4095)
+}
+
+void loop() {
+  int analogValue = analogRead(ANALOG_PIN);  // 아날로그 값 읽기
+  Serial.print("Analog Value: ");
+  Serial.println(analogValue);              // 값을 시리얼로 출력
+  delay(500);                               // 500ms 대기
+}
+```
+
