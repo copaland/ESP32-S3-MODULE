@@ -10,14 +10,14 @@ ESP32 S3 16M Flash, AI IoT 개발용 보드
 |--------|-------|
 | 47 | LED1 D13 파랑 |
 | 38 | LED2 D12 빨간 |
+| 8 | SW1 D2 |
+| 9 | SW2 D3 |
+| 1 | Rotation A0 |
 | 15 | RGB LED red |
 | 16 | RGB LED green |
 | 21 | RGB LED blue |
 | 11 | Buzzer D5 |
 | 10 | DHT11 D4 |
-| 1 | Rotation A0 |
-| 8 | SW1 D2 |
-| 9 | SW2 D3 |
 | 2 | Light A1 |
 | 12 | IR Receiver D6 |
 |    | LM35 A2 |
@@ -117,4 +117,31 @@ void loop() {
 }
 ```
 
+## 1.4 아나로그 입력 (1 번핀)
 
+<img src="https://github.com/user-attachments/assets/8d3ef6cc-9df4-47de-a5eb-6bd3402c9eb4" alt="Analog Input" width="100">  1번 아나로그 입력    
+```
+esp32 s3 보드 1 번핀에 아나로그 입력이 연결되어 있습니다. 입력 값을 시리얼포트로 알려줘
+```
+아두이노 프로그램
+```
+#define SWITCH1_PIN 8  // 첫 번째 스위치 핀 번호
+#define SWITCH2_PIN 9  // 두 번째 스위치 핀 번호
+
+void setup() {
+  Serial.begin(115200);              // 시리얼 통신 초기화
+  pinMode(SWITCH1_PIN, INPUT_PULLUP); // 스위치1 핀을 입력 모드로 설정 및 내부 풀업 저항 활성화
+  pinMode(SWITCH2_PIN, INPUT_PULLUP); // 스위치2 핀을 입력 모드로 설정 및 내부 풀업 저항 활성화
+}
+
+void loop() {
+  if (digitalRead(SWITCH1_PIN) == LOW) { // 스위치1이 눌렸을 때 (풀업 상태에서 LOW)
+    Serial.println("Switch 1 Pressed");
+    delay(200); // debounce 방지를 위한 딜레이
+  }
+  if (digitalRead(SWITCH2_PIN) == LOW) { // 스위치2가 눌렸을 때 (풀업 상태에서 LOW)
+    Serial.println("Switch 2 Pressed");
+    delay(200); // debounce 방지를 위한 딜레이
+  }
+}
+```
