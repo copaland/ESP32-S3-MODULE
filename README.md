@@ -59,6 +59,7 @@ void setColor(uint8_t red, uint8_t green, uint8_t blue) {
 }7,
 ```
 ## 1.2 Led 제어 (47, 38 번핀)
+ESP32-S3 보드의 47번 핀과 38번 핀에 연결된 LED를 1초 간격으로 교차로 점등하는 Arduino 프로그램입니다.    
 
 <img src="https://github.com/user-attachments/assets/8d3ef6cc-9df4-47de-a5eb-6bd3402c9eb4" alt="Led Control" width="100">  47, 38번 Led 제어    
 ```
@@ -89,6 +90,7 @@ void loop() {
 ```
 
 ## 1.3 스위치 입력 (8, 9 번핀)
+ESP32-S3 보드의 8번 핀과 9번 핀에 연결된 스위치를 감지하고, 스위치를 누를 때마다 시리얼 포트로 해당 상태를 출력하는 Arduino 프로그램입니다.    
 
 <img src="https://github.com/user-attachments/assets/8d3ef6cc-9df4-47de-a5eb-6bd3402c9eb4" alt="Switch Input" width="100">  8,9번 스위치 입력    
 ```
@@ -118,11 +120,15 @@ void loop() {
 ```
 
 ## 1.4 아나로그 입력 (1 번핀)
-
+ESP32-S3 보드의 1번 핀에 아날로그 입력이 연결하여 해당 값을 읽어서 시리얼 포트로 출력하는 Arduino 프로그램입니다.
 <img src="https://github.com/user-attachments/assets/8d3ef6cc-9df4-47de-a5eb-6bd3402c9eb4" alt="Analog Input" width="100">  1번 아나로그 입력    
 ```
 esp32 s3 보드 1 번핀에 아나로그 입력이 연결되어 있습니다. 입력 값을 시리얼포트로 알려줘
 ```
+- ANALOG_PIN은 1번 핀으로 설정하여 ADC1 채널을 사용합니다.
+- analogReadResolution(12)를 사용하여 아날로그 입력 값을 **12비트 해상도(0 ~ 4095)**로 읽습니다. 기본값은 12비트입니다.
+- analogRead(ANALOG_PIN) 함수로 아날로그 값을 읽습니다. 읽은 값은 0에서 4095 범위의 정수로 반환됩니다.
+- 
 아두이노 프로그램
 ```
 #define ANALOG_PIN 1  // 아날로그 입력 핀 번호
