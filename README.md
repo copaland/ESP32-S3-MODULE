@@ -170,4 +170,49 @@ void loop() {
   delay(500);                               // 500ms 대기
 }
 ```
+<img src="https://github.com/user-attachments/assets/8d3ef6cc-9df4-47de-a5eb-6bd3402c9eb4" alt="음악연주" width="100">  음악연주   
+```
+부져로 음악연주하는 프로그램 만들어줘
+```
+ESP32-S3의 부저를 사용해 간단한 음악을 연주하는 프로그램을 작성할 수 있습니다. 아래는 아두이노의 tone() 함수를 사용하여 **"Twinkle Twinkle Little Star"**를 연주하는 예제입니다. 
+```
+#define BUZZER_PIN 11  // 부저가 연결된 핀 번호
 
+// 음계의 주파수 정의 (도, 레, 미, 파, 솔, 라, 시)
+#define NOTE_C4  262
+#define NOTE_D4  294
+#define NOTE_E4  330
+#define NOTE_F4  349
+#define NOTE_G4  392
+#define NOTE_A4  440
+#define NOTE_B4  494
+#define NOTE_C5  523
+
+// 멜로디 음계 배열
+int melody[] = {
+  NOTE_C4, NOTE_C4, NOTE_G4, NOTE_G4, NOTE_A4, NOTE_A4, NOTE_G4,
+  NOTE_F4, NOTE_F4, NOTE_E4, NOTE_E4, NOTE_D4, NOTE_D4, NOTE_C4
+};
+
+// 각 음계의 지속 시간 (4분의 1, 8분의 1 등)
+int noteDurations[] = {
+  4, 4, 4, 4, 4, 4, 2,
+  4, 4, 4, 4, 4, 4, 2
+};
+
+void setup() {
+  pinMode(BUZZER_PIN, OUTPUT); // 부저 핀을 출력 모드로 설정
+}
+
+void loop() {
+  // 멜로디 재생
+  for (int i = 0; i < sizeof(melody) / sizeof(melody[0]); i++) {
+    int noteDuration = 1000 / noteDurations[i];  // 음 길이 계산
+    tone(BUZZER_PIN, melody[i], noteDuration);   // 음 출력
+    delay(noteDuration * 1.3);                   // 음 사이 간격 (지속 시간의 30% 추가)
+    noTone(BUZZER_PIN);                          // 음 끄기
+  }
+
+  delay(2000); // 전체 멜로디 끝난 후 2초 대기
+}
+```
