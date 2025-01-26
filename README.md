@@ -14,11 +14,11 @@ ESP32 S3 16M Flash, AI IoT 개발용 보드
 | 9 | SW2 D3 |
 | 1 | Rotation A0 |
 | 11 | Buzzer D5 |
+| 2 | Light A1 |
 | 15 | RGB LED red |
 | 16 | RGB LED green |
 | 21 | RGB LED blue |
 | 10 | DHT11 D4 |
-| 2 | Light A1 |
 | 12 | IR Receiver D6 |
 |    | LM35 A2 |
 
@@ -214,5 +214,43 @@ void loop() {
   }
 
   delay(2000); // 전체 멜로디 끝난 후 2초 대기
+}
+```
+
+## 1.6 Light 센서 (2 번핀)
+
+ESP32-S3 보드의 11번 핀에 연결된 부저를 제어하기 위해 Arduino 코드를 작성했습니다. 부저는 PWM 신호를 통해 제어되며, 이를 통해 다양한 음을 생성할 수 있습니다.    
+
+<img src="https://github.com/user-attachments/assets/8d3ef6cc-9df4-47de-a5eb-6bd3402c9eb4" alt="Light 센서" width="100">  Light 센서
+```
+sp32 s3 보드 2 번핀에 Light 센서가 연결되어 있습니다. 조도를 출력하는 프로그램해줘
+```
+- LIGHT_SENSOR_PIN 설정: 센서가 연결된 핀 번호를 #define으로 정의합니다.
+- analogReadResolution(12): ESP32-S3의 ADC는 최대 12비트 해상도를 지원합니다. 이를 설정해 ADC 값이 0~4095 범위로 출력되도록 합니다.
+- ADC 값을 전압으로 변환: 조도 센서에서 출력된 값은 ADC를 통해 읽은 뒤, 전압 값으로 변환됩니다.
+계산 공식: 전압 = (ADC 값 / 최대 ADC 값) * 기준 전압
+- Serial 출력: 읽은 ADC 값과 전압 값을 시리얼 모니터에 출력합니다
+  
+아두이노 프로그램
+```
+#define LIGHT_SENSOR_PIN 2  // Light 센서가 연결된 핀
+
+void setup() {
+  Serial.begin(115200);           // 시리얼 통신 초기화
+  pinMode(LIGHT_SENSOR_PIN, INPUT);  // Light 센서 핀을 입력으로 설정
+  analogReadResolution(12);       // 12비트 ADC 해상도 설정 (0~4095)
+}
+
+void loop() {
+  int lightValue = analogRead(LIGHT_SENSOR_PIN);  // Light 센서 값 읽기
+  float voltage = (lightValue / 4095.0) * 3.3;    // ADC 값을 전압으로 변환 (ESP32-S3의 기본 전압 기준은 3.3V)
+
+  Serial.print("Light Sensor Value: ");
+  Serial.print(lightValue);                       // ADC 값 출력
+  Serial.print(" | Voltage: ");
+  Serial.print(voltage, 2);                       // 전압 값 출력
+  Serial.println(" V");
+
+  delay(500);  // 500ms 대기
 }
 ```
