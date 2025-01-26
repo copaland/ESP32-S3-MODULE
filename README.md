@@ -15,10 +15,10 @@ ESP32 S3 16M Flash, AI IoT 개발용 보드
 | 1 | Rotation A0 |
 | 11 | Buzzer D5 |
 | 2 | Light A1 |
+| 10 | DHT11 D4 |
 | 15 | RGB LED red |
 | 16 | RGB LED green |
 | 21 | RGB LED blue |
-| 10 | DHT11 D4 |
 | 12 | IR Receiver D6 |
 |    | LM35 A2 |
 
@@ -253,4 +253,13 @@ void loop() {
 
   delay(500);  // 500ms 대기
 }
+```
+
+## 1.7 DHT11 온습도 센서 (10 번핀)
+
+ESP32-S3 보드의 11번 핀에 연결된 부저를 제어하기 위해 Arduino 코드를 작성했습니다. 부저는 PWM 신호를 통해 제어되며, 이를 통해 다양한 음을 생성할 수 있습니다.    
+
+<img src="https://github.com/user-attachments/assets/8d3ef6cc-9df4-47de-a5eb-6bd3402c9eb4" alt="DHT11 온습도 센서" width="100">  DHT11 온습도 센서
+```
+sp32 s3 보드 10 번핀에  DHT11 온습도 센서가 연결되어 있습니다. 온습도를 출력하는 프로그램해
 ```
