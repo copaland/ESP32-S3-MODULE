@@ -87,3 +87,34 @@ void loop() {
   delay(1000);                 // 1초 대기
 }
 ```
+
+## 1.3 스위치 입력 (8, 9 번핀)
+
+<img src="https://github.com/user-attachments/assets/8d3ef6cc-9df4-47de-a5eb-6bd3402c9eb4" alt="Switch Input" width="100">  8,9번 스위치 입력    
+```
+esp32 s3 보드 8,9 번핀에 스위치가 연결되어 있습니다. 스위치를 누르면 시리얼포트로 이를 알려줘
+```
+아두이노 프로그램
+```
+#define SWITCH1_PIN 8  // 첫 번째 스위치 핀 번호
+#define SWITCH2_PIN 9  // 두 번째 스위치 핀 번호
+
+void setup() {
+  Serial.begin(115200);              // 시리얼 통신 초기화
+  pinMode(SWITCH1_PIN, INPUT_PULLUP); // 스위치1 핀을 입력 모드로 설정 및 내부 풀업 저항 활성화
+  pinMode(SWITCH2_PIN, INPUT_PULLUP); // 스위치2 핀을 입력 모드로 설정 및 내부 풀업 저항 활성화
+}
+
+void loop() {
+  if (digitalRead(SWITCH1_PIN) == LOW) { // 스위치1이 눌렸을 때 (풀업 상태에서 LOW)
+    Serial.println("Switch 1 Pressed");
+    delay(200); // debounce 방지를 위한 딜레이
+  }
+  if (digitalRead(SWITCH2_PIN) == LOW) { // 스위치2가 눌렸을 때 (풀업 상태에서 LOW)
+    Serial.println("Switch 2 Pressed");
+    delay(200); // debounce 방지를 위한 딜레이
+  }
+}
+```
+
+
