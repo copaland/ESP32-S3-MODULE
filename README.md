@@ -308,3 +308,38 @@ void loop() {
   delay(2000); // 2초마다 측정
 }
 ```
+
+## 1.8 LM35 온도 센서 (4 번핀)
+
+LM35 온도 센서는 아날로그 출력 타입의 온도 센서입니다. 온도를 섭씨(°C)로 측정하며, 출력 전압은 섭씨 1도당 10mV입니다. 이를 ESP32-S3의 4번 핀에 연결하여 값을 읽고 온도를 출력하는 프로그램은 다음과 같이 작성할 수 있습니다.
+
+<img src="https://github.com/user-attachments/assets/8d3ef6cc-9df4-47de-a5eb-6bd3402c9eb4" alt="LM35 온도 센서" width="100">  LM35 온도 센서
+```
+LM35 센서가 4번핀에 연결되어 있어요 프로그램 해주세요
+```
+아두이노 프로그램
+```
+#define LM35_PIN 4  // LM35 센서의 출력 핀이 연결된 ESP32-S3의 핀 번호
+
+void setup() {
+  Serial.begin(115200);           // 시리얼 통신 초기화
+  analogReadResolution(12);       // 12비트 ADC 해상도 설정 (0~4095)
+  Serial.println("LM35 온도 센서 사용 예제");
+}
+
+void loop() {
+  int adcValue = analogRead(LM35_PIN);    // LM35 센서에서 아날로그 값 읽기
+  float voltage = (adcValue / 4095.0) * 3.3;  // ADC 값을 전압으로 변환 (ESP32-S3의 참조 전압: 3.3V)
+  float temperature = voltage * 100.0;       // 전압을 온도로 변환 (1V = 100°C)
+
+  Serial.print("ADC 값: ");
+  Serial.print(adcValue);
+  Serial.print(" | 전압: ");
+  Serial.print(voltage, 2);
+  Serial.print(" V | 온도: ");
+  Serial.print(temperature, 2);
+  Serial.println(" °C");
+
+  delay(1000);  // 1초 대기
+}
+```
