@@ -18,8 +18,8 @@ ESP32 S3 16M Flash, AI IoT 개발용 보드
 | 10 | DHT11 D4 |
 | 4  | LM35 A2 |
 | 15 | RGB LED red |
-| 16 | RGB LED green |
-| 21 | RGB LED blue |
+| 21 | RGB LED green |
+| 16 | RGB LED blue |
 | 12 | IR Receiver D6 |
 
 
@@ -341,5 +341,53 @@ void loop() {
   Serial.println(" °C");
 
   delay(1000);  // 1초 대기
+}
+```
+
+## 1.9 RGB Led 센서 (15,21,16 번핀 red,green,blue)
+
+이 프로그램은 RGB LED의 각 핀에 대해 PWM 신호를 보내 LED의 밝기를 제어합니다. 빨강, 초록, 파랑의 조합을 통해 다양한 색상을 순차적으로 출력합니다.
+
+<img src="https://github.com/user-attachments/assets/8d3ef6cc-9df4-47de-a5eb-6bd3402c9eb4" alt="RGB Led 센서" width="100">  RGB Led 센서
+```
+15,21,16 이 차례로 red, green, blue 가 연결되어 있습니다. led 프로그램 해줘
+```
+아두이노 프로그램
+```
+// Define the RGB LED pins
+const int redPin = 15;
+const int greenPin = 21;
+const int bluePin = 16;
+
+void setup() {
+  // Initialize the RGB LED pins as output
+  pinMode(redPin, OUTPUT);
+  pinMode(greenPin, OUTPUT);
+  pinMode(bluePin, OUTPUT);
+}
+
+void loop() {
+  // Red
+  setColor(255, 0, 0); // Turn the RGB LED red
+  delay(1000);         // Wait for a second
+  // Green
+  setColor(0, 255, 0); // Turn the RGB LED green
+  delay(1000);         // Wait for a second
+  // Blue
+  setColor(0, 0, 255); // Turn the RGB LED blue
+  delay(1000);         // Wait for a second
+  // White
+  setColor(255, 255, 255); // Turn the RGB LED white
+  delay(1000);             // Wait for a second
+  // Off
+  setColor(0, 0, 0); // Turn the RGB LED off
+  delay(1000);       // Wait for a second
+}
+
+// Function to set the color of the RGB LED
+void setColor(int redValue, int greenValue, int blueValue) {
+  analogWrite(redPin, redValue);
+  analogWrite(greenPin, greenValue);
+  analogWrite(bluePin, blueValue);
 }
 ```
