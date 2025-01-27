@@ -346,7 +346,7 @@ void loop() {
 
 ## 1.9 RGB Led 센서 (15,21,16 번핀 red,green,blue)
 
-이 프로그램은 RGB LED의 각 핀에 대해 PWM 신호를 보내 LED의 밝기를 제어합니다. 빨강, 초록, 파랑의 조합을 통해 다양한 색상을 순차적으로 출력합니다.
+이 프로그램은 RGB LED의 각 핀에 대해 LED의 밝기를 제어합니다. 빨강, 초록, 파랑, 흰색의 조합을 통해 다양한 색상을 순차적으로 출력합니다.
 
 <img src="https://github.com/user-attachments/assets/8d3ef6cc-9df4-47de-a5eb-6bd3402c9eb4" alt="RGB Led 센서" width="100">  RGB Led 센서
 ```
