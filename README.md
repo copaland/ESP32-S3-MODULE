@@ -57,7 +57,7 @@ void loop() {
 void setColor(uint8_t red, uint8_t green, uint8_t blue) {
   strip.setPixelColor(0, strip.Color(red, green, blue)); // 첫 번째 LED의 색상 설정
   strip.show();                                         // 설정한 색상을 출력
-}7,
+}
 ```
 ## 1.2 Led 제어 (47, 38 번핀)
 ESP32-S3 보드의 47번 핀과 38번 핀에 연결된 LED를 1초 간격으로 교차로 점등하는 Arduino 프로그램입니다.    
