@@ -1,6 +1,35 @@
-# i2r-05
-ESP32 S3 16M Flash, AI IoT 개발용 보드
+# i2r-05 보드를 활용한 교육 및 On-Device AI 구현 계획
+# 개요
+김동일 교수는 GitHub의 i2r-05 레포지터리를 기반으로 학생들에게 IoT 및 임베디드 시스템을 교육합니다. 여기서는 i2r-05 보드를 활용하여 기본적인 하드웨어 이해부터 실습을 진행하고, On-Device AI(온디바이스 AI) 구현합니다.
 
+# 교육 목표
+- i2r-05 보드를 활용하여 하드웨어 및 펌웨어 개발의 기초를 익힘
+- Wi-Fi 및 MQTT 기반의 IoT 통신을 실습하여 네트워크 프로그래밍 이해
+- 머신러닝 및 On-Device AI 개념을 학습하고 실제 보드에서 실행 가능하도록 구현
+- ESP32-S3의 강력한 연산 성능을 활용하여 실시간 데이터 분석 및 처리
+
+# 교육 과정 구성
+## (1) 기초 과정: i2r-05 보드 이해 및 환경 설정
+- i2r-05 보드 개요 및 사양 분석
+- 개발 환경 구축(Arduino IDE, ESP-IDF, PlatformIO)
+- 기본적인 GPIO 제어 및 센서 연결 실습
+- 시리얼 통신 및 Wi-Fi 설정
+## (2) 중급 과정: IoT 및 네트워크 프로그래밍
+- MQTT 프로토콜을 활용한 데이터 송수신
+- 클라우드 서버(AWS, Firebase, Node.js 서버)와의 연동
+- MongoDB와 연계하여 데이터 저장 및 분석
+## (3) 고급 과정: On-Device AI 구현
+- ESP32-S3의 AI 가속 기능(TensorFlow Lite Micro, Edge Impulse) 소개
+- 간단한 머신러닝 모델(이미지 인식, 음성 인식) 학습 및 배포
+- 실시간 센서 데이터를 활용한 AI 모델 적용
+- 최적화 및 배터리 절약을 위한 저전력 설계
+
+# 기대 효과
+- 학생들이 IoT 및 AI 시스템의 기본 개념을 이해하고 직접 구현할 수 있도록 지원
+- AI가 탑재된 임베디드 시스템을 직접 설계하고 응용할 수 있는 능력 배양
+- 실제 산업 현장에서 활용 가능한 IoT 및 AI 기술 습득
+
+ESP32 S3 16M Flash, AI IoT 개발용 보드
 
 ![i2r-05](https://github.com/user-attachments/assets/ba88e650-298e-4400-9a06-2c0836869400)
 ![i2r-05 회로도](https://github.com/user-attachments/assets/ed673ea3-f054-4370-ae92-979a29e72c4d)
