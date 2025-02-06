@@ -71,6 +71,24 @@ ESP32-S3-WROOM-1-N16R8은 Espressif Systems에서 개발한 고성능 Wi-Fi 및 
 - 보안 기능 강화 : Secure Boot, Flash Encryption, AES-XTS 암호화 지원
 - ESP-IDF 및 Arduino 지원 : ESP-IDF, Arduino, MicroPython 등 다양한 개발 환경 제공
 
+### 3. ESP32-S3-WROOM-1-N16R8의 활용 사례
+🔹 AI 및 머신러닝
+
+온디바이스 AI (On-Device AI)
+얼굴 인식, 음성 인식, AIoT (AI + IoT)
+🔹 IoT 및 스마트 디바이스
+
+Wi-Fi 기반 스마트 홈 시스템
+BLE 센서 네트워크
+🔹 임베디드 시스템 개발
+
+USB 기반 주변기기 개발
+드론, 로봇 제어 시스템
+🔹 실시간 데이터 처리
+
+MQTT 및 WebSocket을 활용한 실시간 데이터 전송
+센서 데이터를 클라우드로 전송하여 모니터링
+
 # 1. ESP32 블루투스(BLE) 통신 개요 및 실습
 ESP32는 Bluetooth Classic과 Bluetooth Low Energy(BLE)를 모두 지원하는 강력한 무선 모듈입니다.
 BLE는 저전력으로 데이터를 전송할 수 있어, IoT(사물인터넷) 기기에서 널리 사용됩니다.
