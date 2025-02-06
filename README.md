@@ -85,7 +85,13 @@ ESP32-S3-WROOM-1-N16R8은 Espressif Systems에서 개발한 고성능 Wi-Fi 및 
 - MQTT 및 WebSocket을 활용한 실시간 데이터 전송
 - 센서 데이터를 클라우드로 전송하여 모니터링
 
-
+### 4. ESP32-S3-WROOM-1-N16R8 개발 환경
+- ESP-IDF (Espressif 공식 SDK)
+- Arduino IDE
+- Visual Code
+- PlatformIO
+- MicroPython
+- FreeRTOS 기반 멀티태스킹 지원
 
 
 
