@@ -34,6 +34,36 @@ ESP32 S3 16M Flash, AI IoT 개발용 보드
 ![i2r-05](https://github.com/user-attachments/assets/ba88e650-298e-4400-9a06-2c0836869400)
 ![i2r-05 회로도](https://github.com/user-attachments/assets/ed673ea3-f054-4370-ae92-979a29e72c4d)
 
+# ESP32-S3-WROOM-1-N16R8 설명
+ESP32-S3-WROOM-1-N16R8은 Espressif Systems에서 개발한 고성능 Wi-Fi 및 Bluetooth LE 모듈입니다. 이 모듈은 ESP32-S3 SoC를 기반으로 하며, **16MB의 플래시 메모리(N16)와 8MB의 PSRAM(R8)**을 탑재하고 있습니다.
+
+1. 주요 특징
+(1) CPU 및 성능
+- 듀얼코어 Xtensa® LX7 32비트 프로세서
+- 최대 240MHz 클럭 속도
+- AI 및 DSP 기능 향상 (벡터 연산 가속 지원)
+(2) 메모리
+- 16MB 플래시 메모리 (N16)
+- 8MB PSRAM (R8) → AI, 이미지 처리, 데이터 버퍼링에 유용
+(3)무선 기능
+- Wi-Fi 802.11 b/g/n (2.4GHz)
+- Bluetooth 5.0 LE (Low Energy)
+- WPA3 보안 지원
+(4) USB 기능
+- Full-Speed USB OTG (USB 1.1)
+- USB CDC/JTAG 디버깅 지원
+- USB-Serial 통신 가능 (UART 필요 없음)
+(5) GPIO 및 확장성
+- 최대 45개의 GPIO 핀 제공
+- SPI, I2C, UART, PWM, ADC, DAC 지원
+- JTAG 디버깅 지원
+(6) 저전력 설계
+- Deep Sleep 모드에서 μA 단위의 전력 소모
+- ULP (Ultra-Low Power) 코프로세서 내장
+(7) AI 및 머신러닝
+- Vector Extension (AI 가속기) 포함
+- TensorFlow Lite, ESP-DSP 최적화 지원
+
 # 1. ESP32 블루투스(BLE) 통신 개요 및 실습
 ESP32는 Bluetooth Classic과 Bluetooth Low Energy(BLE)를 모두 지원하는 강력한 무선 모듈입니다.
 BLE는 저전력으로 데이터를 전송할 수 있어, IoT(사물인터넷) 기기에서 널리 사용됩니다.
