@@ -6,6 +6,8 @@
 
 <img width="400" alt="i2r-05 pin연결" src="https://github.com/user-attachments/assets/61f4ac1b-e69f-42bf-8401-495074a802e7">
 
+[![26-1 ESP32-S3 아두이노 실습보드 전파인증](https://github.com/user-attachments/assets/61f4ac1b-e69f-42bf-8401-495074a802e7)](https://youtu.be/buiv6945OOA) 
+
 [![26-1 ESP32-S3 아두이노 실습보드 전파인증](https://youtu.be/buiv6945OOA)    
 
 콘트롤 사이트 연결 : https://ai.doowon.ac.kr 
