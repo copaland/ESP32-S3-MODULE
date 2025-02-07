@@ -2,7 +2,7 @@
 # 전파인증 시험 (ESP32-S3 아두이노 과학교재 실습보드)
 
 
-[아두이노 소스프로그램 링크]("https://github.com/kdi6033/i2r-05/blob/main/file/board-i2r-05.ino")  
+[아두이노 소스프로그램 링크](https://github.com/kdi6033/i2r-05/blob/main/file/board-i2r-05.ino)  
 
 <img width="400" alt="i2r-05 pin연결" src="https://github.com/user-attachments/assets/61f4ac1b-e69f-42bf-8401-495074a802e7">
 
