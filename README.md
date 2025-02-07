@@ -4,8 +4,7 @@
 
 [nodeRed 소스프로그램 링크](https://github.com/kdi6033/i2r/blob/main/0%20Source-Program-IOT/nodered-local.json)  
 
-[![26-1 ESP32-S3 아두이노 보드](https://img.youtube.com/vi/FT0muFM24xc/0.jpg)](https://youtu.be/FT0muFM24xc)  
-
+<img width="290" alt="i2r-05 pin연결" src="https://github.com/user-attachments/assets/61f4ac1b-e69f-42bf-8401-495074a802e7">
 ![26-1 ESP32 실습습보드](https://github.com/user-attachments/assets/61f4ac1b-e69f-42bf-8401-495074a802e7)
 
 
