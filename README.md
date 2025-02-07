@@ -4,9 +4,7 @@
 
 [nodeRed 소스프로그램 링크](https://github.com/kdi6033/i2r/blob/main/0%20Source-Program-IOT/nodered-local.json)  
 
-<img width="290" alt="i2r-05 pin연결" src="https://github.com/user-attachments/assets/61f4ac1b-e69f-42bf-8401-495074a802e7">
-![26-1 ESP32 실습습보드](https://github.com/user-attachments/assets/61f4ac1b-e69f-42bf-8401-495074a802e7)
-
+<img width="400" alt="i2r-05 pin연결" src="https://github.com/user-attachments/assets/61f4ac1b-e69f-42bf-8401-495074a802e7">
 
 # 개요
 GitHub의 i2r-05 레포지터리를 기반으로 학생들에게 IoT 및 임베디드 시스템을 교육합니다. 여기서는 i2r-05 보드를 활용하여 기본적인 하드웨어 이해부터 실습을 진행하고, On-Device AI(온디바이스 AI) 구현합니다. 그리고 스마트팜을 하시는 분들을 위해서 각종 센서와 액튜에이터를 자동으로 연결하여 스마트폰과 PC에서 모니터링/제어 할 수 있게 합니다.
