@@ -1,12 +1,13 @@
 # i2r-05 보드를 활용한 교육 및 On-Device AI 구현 계획
 # KC 전파인증을 받았습니다. 인증번호 R-R-I2r-i2r-05
 
+아래 소스코드를 보드에 설치하면 자동으로 사이트에 보드가 등록되고 모니터링 할 수 있습니다. 이러한 프로그램을 실현 할 수 있게 AI를 활용해 프로그램 과정을 이 사이트에서 설명 하겠습니다.
 
 [아두이노 소스프로그램 링크](https://github.com/kdi6033/i2r-05/blob/main/file/board-i2r-05.ino)  
 
 [![26-1 ESP32-S3 아두이노 실습보드 전파인증](https://img.youtube.com/vi/buiv6945OOA/0.jpg)](https://youtu.be/buiv6945OOA) 
 
-콘트롤 사이트 연결 : https://ai.doowon.ac.kr 
+콘트롤 사이트 로그인 : https://ai.doowon.ac.kr 
 
 보드는 블루투스와 와이파이 통신을 가지고 있습니다.    
 - 블루투스 : 와이파이 정보를 입력하는데 사용, 스마트폰의 블루투스 이용    
