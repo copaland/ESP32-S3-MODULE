@@ -1,5 +1,5 @@
 # i2r-05 보드를 활용한 교육 및 On-Device AI 구현 계획
-# 전파인증 시험 (ESP32-S3 아두이노 과학교재 실습보드)
+# KC 전파인증을 받았습니다. 인증번호 R-R-I2r-i2r-05
 
 
 [아두이노 소스프로그램 링크](https://github.com/kdi6033/i2r-05/blob/main/file/board-i2r-05.ino)  
