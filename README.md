@@ -45,7 +45,7 @@ GitHub의 i2r-05 레포지터리를 기반으로 학생들에게 IoT 및 임베�
 - 실제 산업 현장에서 활용 가능한 IoT 및 AI 기술 습득
 
 ESP32 S3 16M Flash, AI IoT 개발용 보드
-![i2r-05](https://github.com/user-attachments/assets/3892213f-de11-47f7-9d59-3f8e9099c324)
+![i2r-05](https://github.com/user-attachments/assets/4ba415d9-08e6-4b2c-9396-1d3f35ffdfe2)
 ![i2r-05 회로도](https://github.com/user-attachments/assets/ed673ea3-f054-4370-ae92-979a29e72c4d)
 
 # ESP32-S3-WROOM-1-N16R8 설명
