@@ -498,6 +498,7 @@ void loop() {
   delay(1000);       // Wait for a second
 }
 
+
 // Function to set the color of the RGB LED
 void setColor(int redValue, int greenValue, int blueValue) {
   analogWrite(redPin, redValue);
@@ -505,3 +506,82 @@ void setColor(int redValue, int greenValue, int blueValue) {
   analogWrite(bluePin, blueValue);
 }
 ```
+
+# Otto Ninja 로봇
+
+```
+서보모터를 esp32 보드 i2r-05 에 연결합니다. LF 7번, LL 6번, RF 5번, RL 4번 핀에 연결 했습니다. LF RF 는 180도 각도조절 서보모터이고 LL RL 은 360도 회전하는 서보모터 입니다. 이것으로 ninja otto 로봇을 아두이노 프로그램 하려고 합니다.
+```
+
+LF 서보모터 각도 테스트 프로그램 (핀 7번)
+```
+#include <Servo.h>
+
+Servo servoLF;
+
+void setup() {
+  servoLF.attach(7);  // LF 서보모터를 GPIO 7번에 연결
+  Serial.begin(115200);
+  Serial.println("LF 서보모터 각도 테스트 시작!");
+}
+
+void loop() {
+  // 0도
+  servoLF.write(0);
+  Serial.println("각도: 0도");
+  delay(1000);
+
+  // 90도
+  servoLF.write(90);
+  Serial.println("각도: 90도");
+  delay(1000);
+
+  // 180도
+  servoLF.write(180);
+  Serial.println("각도: 180도");
+  delay(1000);
+
+  // 다시 90도
+  servoLF.write(90);
+  Serial.println("각도: 90도");
+  delay(1000);
+}
+```
+
+LL 서보모터 360 테스트 프로그램 (핀 6번)
+```
+#include <ESP32Servo.h>
+
+Servo servo360;
+
+void setup() {
+  Serial.begin(115200);
+  servo360.setPeriodHertz(50);
+  servo360.attach(6, 500, 2400);  // 핀 6번에 연결
+
+  Serial.println("360도 서보모터 정지값 보정 테스트");
+}
+
+void loop() {
+  // 전진
+  servo360.write(120);
+  Serial.println("▶ 전진");
+  delay(2000);
+
+  // 정지 - 보정된 마이크로초 사용
+  servo360.writeMicroseconds(1500); // ← 필요시 1485~1515로 조정
+  Serial.println("⏹ 정지");
+  delay(2000);
+
+  // 후진
+  servo360.write(60);
+  Serial.println("◀ 후진");
+  delay(2000);
+
+  // 정지
+  servo360.writeMicroseconds(1500); // ← 다시 정지
+  Serial.println("⏹ 정지");
+  delay(2000);
+}
+```
+
