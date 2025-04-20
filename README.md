@@ -593,3 +593,36 @@ void loop() {
 |   ↑     |	1600~2400	    | 전진|	느림 → 빠름|
 |   ↓     |	1400~500      |	후진|	느림 → 빠름|
 
+
+LL 서보모터 전진 속도제어 테스트 프로그램 (핀 6번)
+속도제어는 1600 에서 2400까지 가능하나 저속에서 소리가만나고 회전하지 않을 때는 공급되는 전류가 약해서 그러니 건전지를 새것으로 교체하거나 별도의 외부 전원을 공급하면 정상 동작 합니다.
+```
+#include <ESP32Servo.h>
+
+Servo servoLL;
+
+void setup() {
+  Serial.begin(115200);
+
+  servoLL.setPeriodHertz(50);         // 서보모터용 50Hz 주파수
+  servoLL.attach(6, 500, 2400);       // GPIO 6번, 500~2400us 펄스폭 설정
+
+  Serial.println("LL 모터 전진 속도 증가 테스트 시작");
+}
+
+void loop() {
+  // 1500us가 정지. 1520~1700까지 점점 빨라짐
+  for (int pulse = 1700; pulse <= 1900; pulse += 10) {
+    servoLL.writeMicroseconds(pulse);
+    Serial.print("전진 PWM: ");
+    Serial.print(pulse);
+    Serial.println("us");
+    delay(1000);  // 속도 변화 관찰을 위한 대기
+  }
+
+  // 정지
+  servoLL.writeMicroseconds(1500);
+  Serial.println("정지 (1500us)");
+  delay(3000); // 다음 루프 전 잠시 대기
+}
+```
