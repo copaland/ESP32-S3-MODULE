@@ -510,7 +510,10 @@ void setColor(int redValue, int greenValue, int blueValue) {
 # Otto Ninja 로봇
 
 ```
-서보모터를 esp32 보드 i2r-05 에 연결합니다. LF 7번, LL 6번, RF 5번, RL 4번 핀에 연결 했습니다. LF RF 는 180도 각도조절 서보모터이고 LL RL 은 360도 회전하는 서보모터 입니다. 이것으로 ninja otto 로봇을 아두이노 프로그램 하려고 합니다.
+서보모터를 esp32 보드 i2r-05 에 연결합니다. LF 7번, LL 6번, RF 5번, RL 4번 핀에 연결 했습니다.
+LF RF 는 180도 각도조절 서보모터이고 LL RL 은 360도 회전하는 서보모터 입니다.
+ESP32Servo.h 를 이용하여 ninja otto 로봇을 아두이노 프로그램 하려고 합니다.
+LF 7번 핀을 이용해서 회전 제어하는 예제 프로그램 만들어 주세요
 ```
 
 LF 서보모터 각도 테스트 프로그램 (핀 7번)
