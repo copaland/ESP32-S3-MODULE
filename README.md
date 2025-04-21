@@ -518,37 +518,39 @@ LF 7번 핀을 이용해서 회전 제어하는 예제 프로그램 만들어 �
 
 LF 서보모터 각도 테스트 프로그램 (핀 7번)
 ```
-#include <Servo.h>
+#include <ESP32Servo.h>
 
-Servo servoLF;
+// LF 서보모터를 7번 핀에 연결
+const int LF_PIN = 7;
+Servo lfServo;
 
 void setup() {
-  servoLF.attach(7);  // LF 서보모터를 GPIO 7번에 연결
   Serial.begin(115200);
-  Serial.println("LF 서보모터 각도 테스트 시작!");
+
+  // 180도 서보모터 초기화
+  lfServo.setPeriodHertz(50);  // 서보 주파수 설정 (일반적으로 50Hz)
+  lfServo.attach(LF_PIN, 500, 2400);  // 최소/최대 펄스 폭 (마이크로초 단위, 서보에 따라 다름)
+  Serial.println("LF 서보모터 제어 시작");
 }
 
 void loop() {
-  // 0도
-  servoLF.write(0);
-  Serial.println("각도: 0도");
+  Serial.println("0도");
+  lfServo.write(0);  // 0도 위치로 이동
   delay(1000);
 
-  // 90도
-  servoLF.write(90);
-  Serial.println("각도: 90도");
+  Serial.println("90도");
+  lfServo.write(90);  // 90도 위치로 이동
   delay(1000);
 
-  // 180도
-  servoLF.write(180);
-  Serial.println("각도: 180도");
+  Serial.println("180도");
+  lfServo.write(180);  // 180도 위치로 이동
   delay(1000);
 
-  // 다시 90도
-  servoLF.write(90);
-  Serial.println("각도: 90도");
+  Serial.println("90도로 복귀");
+  lfServo.write(90);  // 다시 중간 위치로
   delay(1000);
 }
+
 ```
 
 LL 서보모터 360 테스트 프로그램 (핀 6번)
