@@ -631,3 +631,128 @@ void loop() {
   delay(3000); // 다음 루프 전 잠시 대기
 }
 ```
+✅ MQTT 통신에 의한 전진 후진 통신 프로그램
+chatGpt 에 다음과 같이 요구하세 
+```
+아두이노 esp32 s3로 프로그램 합니다.
+와이파이 연결은 ssid i2r password 00000000 입니다.
+mqtt 서버는 ai.doowon.ac.kr 포트는 1883 
+intopic i2r/kdi6033@gmail.com/in  outtopic i2r/kdi6033/out
+프로토콜은 order=1 이면 전진, order=2 이면 후진하게 해줘
+ArduinoJson.h를 사용해서 프로그램 해줘
+전후진 프로그램은 앞의 예제를 참조해서 작성해줘
+```
+출력된 아두이노 프로그램
+mqtt 통신으로 {"order":1} 을 보내면 전진 {"order":2} 를 보내면 추진 합니다.
+이것은 react로 작성하세요. 와이파이 정보와 intopic, outtopic은 자신의 것으로 수정하세요
+```
+#include <WiFi.h>
+#include <PubSubClient.h>
+#include <ArduinoJson.h>
+#include <ESP32Servo.h>
+
+// WiFi 정보
+const char* ssid = "i2r";
+const char* password = "00000000";
+
+// MQTT 서버 정보
+const char* mqtt_server = "ai.doowon.ac.kr";
+const int mqtt_port = 1883;
+const char* intopic = "i2r/kdi6033@gmail.com/in";
+const char* outtopic = "i2r/kdi6033@gmail.com/out";
+
+// 서보모터 관련
+Servo servoLL;
+const int servoPin = 6; // LL 모터 핀
+
+WiFiClient espClient;
+PubSubClient client(espClient);
+
+// 서보 제어 함수
+void controlServo(int order) {
+  if (order == 1) {
+    // 전진
+    servoLL.writeMicroseconds(1800);
+    Serial.println("전진 명령 - PWM: 1800us");
+  } else if (order == 2) {
+    // 후진
+    servoLL.writeMicroseconds(1200);
+    Serial.println("후진 명령 - PWM: 1200us");
+  } else {
+    // 정지
+    servoLL.writeMicroseconds(1500);
+    Serial.println("정지 명령 - PWM: 1500us");
+  }
+}
+
+// MQTT 메시지 수신 콜백
+void callback(char* topic, byte* payload, unsigned int length) {
+  String msg;
+  for (int i = 0; i < length; i++) {
+    msg += (char)payload[i];
+  }
+
+  Serial.print("수신 메시지: ");
+  Serial.println(msg);
+
+  // JSON 파싱
+  StaticJsonDocument<200> doc;
+  DeserializationError error = deserializeJson(doc, msg);
+  if (error) {
+    Serial.print("JSON 파싱 실패: ");
+    Serial.println(error.c_str());
+    return;
+  }
+
+  int order = doc["order"];
+  Serial.print("수신된 order: ");
+  Serial.println(order);
+  controlServo(order);
+}
+
+// MQTT 연결 함수
+void reconnect() {
+  while (!client.connected()) {
+    Serial.print("MQTT 연결 시도 중...");
+    String clientId = "ESP32Client-" + String(random(0xffff), HEX);
+    if (client.connect(clientId.c_str())) {
+      Serial.println("MQTT 연결 성공");
+      client.subscribe(intopic);
+    } else {
+      Serial.print("실패, 상태코드: ");
+      Serial.println(client.state());
+      delay(2000);
+    }
+  }
+}
+
+void setup() {
+  Serial.begin(115200);
+
+  // 서보 초기화
+  servoLL.setPeriodHertz(50);  // 서보 주파수 설정
+  servoLL.attach(servoPin, 500, 2400); // 0도~180도에 해당하는 펄스 폭
+  servoLL.writeMicroseconds(1500);  // 초기 상태 정지
+
+  // WiFi 연결
+  WiFi.begin(ssid, password);
+  Serial.print("WiFi 연결 중");
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("\nWiFi 연결 완료");
+
+  // MQTT 설정
+  client.setServer(mqtt_server, mqtt_port);
+  client.setCallback(callback);
+}
+
+void loop() {
+  if (!client.connected()) {
+    reconnect();
+  }
+  client.loop();
+}
+
+```
