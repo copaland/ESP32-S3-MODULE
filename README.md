@@ -764,3 +764,121 @@ void loop() {
 }
 
 ```
+
+#### ✅ LL RL 모터 전후진 아두이노 프로그램
+chatGPT에 다음과 같이 요구한다.
+```
+https://github.com/kdi6033/i2r-05/blob/main/README.md#otto-ninja-%EB%A1%9C%EB%B4%87
+여기 참조해서 LL(6번핀) RL(4번핀) 두개의 모터가 같이 동작해서 전진 후진 동작하게, 그리고 order=0 는 정지 하게  다음 프로그램 수정해줘
+여기에 앞에 프로그램응 복사해서 넣어 주세요
+```
+```
+#include <WiFi.h>
+#include <PubSubClient.h>
+#include <ArduinoJson.h>
+#include <ESP32Servo.h>
+
+// WiFi 정보
+const char* ssid = "i2r";
+const char* password = "00000000";
+
+// MQTT 서버 정보
+const char* mqtt_server = "ai.doowon.ac.kr";
+const int mqtt_port = 1883;
+const char* intopic = "i2r/kdi6033@gmail.com/in";
+const char* outtopic = "i2r/kdi6033@gmail.com/out";
+
+// 서보모터 관련
+Servo servoLL;
+const int servoPin = 6; // LL 모터 핀
+
+WiFiClient espClient;
+PubSubClient client(espClient);
+
+// 서보 제어 함수
+void controlServo(int order) {
+  if (order == 1) {
+    // 전진
+    servoLL.writeMicroseconds(1800);
+    Serial.println("전진 명령 - PWM: 1800us");
+  } else if (order == 2) {
+    // 후진
+    servoLL.writeMicroseconds(1200);
+    Serial.println("후진 명령 - PWM: 1200us");
+  } else {
+    // 정지
+    servoLL.writeMicroseconds(1500);
+    Serial.println("정지 명령 - PWM: 1500us");
+  }
+}
+
+// MQTT 메시지 수신 콜백
+void callback(char* topic, byte* payload, unsigned int length) {
+  String msg;
+  for (int i = 0; i < length; i++) {
+    msg += (char)payload[i];
+  }
+
+  Serial.print("수신 메시지: ");
+  Serial.println(msg);
+
+  // JSON 파싱
+  StaticJsonDocument<200> doc;
+  DeserializationError error = deserializeJson(doc, msg);
+  if (error) {
+    Serial.print("JSON 파싱 실패: ");
+    Serial.println(error.c_str());
+    return;
+  }
+
+  int order = doc["order"];
+  Serial.print("수신된 order: ");
+  Serial.println(order);
+  controlServo(order);
+}
+
+// MQTT 연결 함수
+void reconnect() {
+  while (!client.connected()) {
+    Serial.print("MQTT 연결 시도 중...");
+    String clientId = "ESP32Client-" + String(random(0xffff), HEX);
+    if (client.connect(clientId.c_str())) {
+      Serial.println("MQTT 연결 성공");
+      client.subscribe(intopic);
+    } else {
+      Serial.print("실패, 상태코드: ");
+      Serial.println(client.state());
+      delay(2000);
+    }
+  }
+}
+
+void setup() {
+  Serial.begin(115200);
+
+  // 서보 초기화
+  servoLL.setPeriodHertz(50);  // 서보 주파수 설정
+  servoLL.attach(servoPin, 500, 2400); // 0도~180도에 해당하는 펄스 폭
+  servoLL.writeMicroseconds(1500);  // 초기 상태 정지
+
+  // WiFi 연결
+  WiFi.begin(ssid, password);
+  Serial.print("WiFi 연결 중");
+  while (WiFi.status() != WL_CONNECTED) {
+    delay(500);
+    Serial.print(".");
+  }
+  Serial.println("\nWiFi 연결 완료");
+
+  // MQTT 설정
+  client.setServer(mqtt_server, mqtt_port);
+  client.setCallback(callback);
+}
+
+void loop() {
+  if (!client.connected()) {
+    reconnect();
+  }
+  client.loop();
+}
+```
